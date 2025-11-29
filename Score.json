@@ -1,0 +1,11 @@
+{
+	"id": "score16",
+	"name": "Score16", 
+	"author": ["Cassknows", "Lily Felli", "Meta"], 
+	"description": "A mod which replaces Chips and Mult with a 16-parameter 4x4 Scoring matrix",
+	"prefix": "sc16",
+	"main_file": "main.lua",
+	"priority": 0, 
+	"badge_colour": "ffffff",
+	"version": "1.0.0", 
+}
