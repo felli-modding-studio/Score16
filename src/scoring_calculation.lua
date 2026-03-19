@@ -1,0 +1,57 @@
+local score16_matrix = {
+    {"chips", "mult", "sc16_clam", "sc16_wunk",},
+    {"mult", "sc16_clam", "sc16_wunk", "chips",},
+    {"sc16_clam", "sc16_wunk", "chips", "mult",},
+    {"sc16_wunk", "chips", "mult", "sc16_clam",},
+}
+
+local calc_params = Score16.table_keys(Score16.parameters)
+table.insert(calc_params, 'mult')
+table.insert(calc_params, 'chips')
+
+SMODS.Scoring_Calculation {key = 'score16',
+    parameters = calc_params,
+    func = function(self, chips, mult, flames)
+        local params = score16_matrix
+        local matrix = {}
+        for r,row in ipairs(params) do
+            matrix[r] = {}
+            for c,param_key in ipairs(row) do
+                if param_key == "chips" then
+                    matrix[r][c] = chips
+                elseif param_key == "mult" then
+                    matrix[r][c] = mult
+                else
+                    matrix[r][c] = SMODS.get_scoring_parameter(param_key, flames)
+                end
+                if type(matrix[r][c]) == "string" then return 0 end
+            end
+        end
+
+        return Score16.determinant_4x(matrix)
+    end,
+    replace_ui = function (self) --[[@overload fun(self): table]]
+        local params = score16_matrix
+
+        local matrix_rows = {}
+        for r,row in ipairs(params) do
+            local row_cell_nodes = {}
+            for c,param_key in ipairs(row) do
+                row_cell_nodes[c] =
+                {n=G.UIT.C, config={align = 'cm', id = 'hand_'..param_key..'_container'}, nodes = {
+                    SMODS.GUI.score_container {
+                        type = param_key,
+                        align = 'cm',
+                        w = 1,
+                        h = 0.5,
+                        scale = 0.2
+                    }
+                }}
+            end
+
+            matrix_rows[r] = {n=G.UIT.R, config = {align = "cm", padding = 0}, nodes = row_cell_nodes}
+        end
+
+        return {n=G.UIT.C, config = {align = "cm"}, nodes=matrix_rows}
+    end
+}
