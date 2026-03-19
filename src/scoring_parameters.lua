@@ -43,33 +43,103 @@ Score16.operator_types = {
         end
     end,
 }
-local optype = Score16.operator_types
+
+local function default_calc_keys(key)
+    return {
+        [key] = Score16.operator_types.additive_key(),
+        ['x_' .. key] = Score16.operator_types.multiplicative_key(),
+        ['e_' .. key] = Score16.operator_types.exponential_key(),
+        ['eq_' .. key] = Score16.operator_types.declarative_key(),
+    }
+end
 
 Score16.parameters = {
     -- format
     -- {key = "", colour = HEX(...),
     sc16_clam = {
         key = "clam",
-        colour = HEX('11FF11'),
+        colour = HEX('6cff75'),
         default_value = 0,
-        calculation_keys = {
-            clam = optype.additive_key(),
-            x_clam = optype.multiplicative_key(),
-            e_clam = optype.exponential_key(),
-            eq_clam = optype.declarative_key(),
-        }
+        calculation_keys = default_calc_keys("clam")
     },
     sc16_wunk = {
         key = "wunk",
-        colour = HEX('ff00ff'),
+        colour = HEX('e761fd'),
         default_value = 0,
-        calculation_keys = {
-            wunk = optype.additive_key(),
-            x_wunk = optype.multiplicative_key(),
-            e_wunk = optype.exponential_key(),
-            eq_wunk = optype.declarative_key(),
-        }
-    }
+        calculation_keys = default_calc_keys("wunk")
+    },
+    sc16_evil = {
+        key = "evil",
+        colour = HEX('fdeb6d'),
+        default_value = 0,
+        calculation_keys = default_calc_keys("evil")
+    },
+    sc16_score = {
+        key = "score",
+        colour = HEX('8303b2'),
+        default_value = 1,
+        calculation_keys = default_calc_keys("score")
+    },
+    sc16_stability = {
+        key = "stability",
+        colour = HEX('0300a9'),
+        default_value = 0,
+        calculation_keys = default_calc_keys("stability")
+    },
+    sc16_lily = {
+        key = "lily",
+        colour = HEX('ffb069'),
+        default_value = 0,
+        calculation_keys = default_calc_keys("lily")
+    },
+    sc16_none = {
+        key = "none",
+        colour = HEX('00000000'), -- eight 0s
+        default_value = 0,
+        calculation_keys = {}
+    },
+    sc16_fuck = {
+        key = "fuck",
+        colour = HEX('ff2b86'),
+        default_value = 0,
+        calculation_keys = default_calc_keys("fuck")
+    },
+    sc16_hyper = {
+        key = "hyper",
+        colour = HEX('1b3d3d'),
+        default_value = 1,
+        calculation_keys = default_calc_keys("hyper")
+    },
+    sc16_gender = {
+        key = "gender",
+        colour = HEX('ff9be3'),
+        default_value = 0,
+        calculation_keys = default_calc_keys("gender")
+    },
+    sc16_r = {
+        key = "r",
+        colour = HEX('903a3a'),
+        default_value = 0,
+        calculation_keys = default_calc_keys("r")
+    },
+    sc16_sun = {
+        key = "sun",
+        colour = HEX('f4900c'),
+        default_value = 0,
+        calculation_keys = default_calc_keys("sun")
+    },
+    sc16_horse = {
+        key = "horse",
+        colour = HEX('7f4812'),
+        default_value = 0,
+        calculation_keys = default_calc_keys("horse")
+    },
+    sc16_seven = {
+        key = "seven",
+        colour = HEX('02fffe'),
+        default_value = 7,
+        calculation_keys = {}
+    },
 }
 
 for _,param in pairs(Score16.parameters) do

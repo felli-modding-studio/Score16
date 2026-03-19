@@ -44,7 +44,7 @@ function Score16.param_calc_effect(self, effect, scored_card, key, amount, from_
 	if not amount then return end
 	if effect.card and effect.card ~= scored_card then juice_card(effect.card) end
 
-	local key_effects = Score16.key_effects[self.key]
+	local key_effects = Score16.parameters[self.key].calculation_keys
 	if key_effects and key_effects[key] then
 		local effect_values = key_effects[key](self.current, amount)
 		if effect_values.identity and amount == effect_values.identity then return end

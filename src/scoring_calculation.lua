@@ -1,8 +1,8 @@
 local score16_matrix = {
-    {"chips", "mult", "sc16_clam", "sc16_wunk",},
-    {"mult", "sc16_clam", "sc16_wunk", "chips",},
-    {"sc16_clam", "sc16_wunk", "chips", "mult",},
-    {"sc16_wunk", "chips", "mult", "sc16_clam",},
+    {"chips",     "mult",       "sc16_clam",      "sc16_wunk",},
+    {"sc16_evil", "sc16_score", "sc16_stability", "sc16_lily",},
+    {"sc16_none", "sc16_fuck",  "sc16_hyper",     "sc16_gender",},
+    {"sc16_r",    "sc16_sun",   "sc16_horse",     "sc16_seven",},
 }
 
 local calc_params = Score16.table_keys(Score16.parameters)
@@ -52,6 +52,9 @@ SMODS.Scoring_Calculation {key = 'score16',
             matrix_rows[r] = {n=G.UIT.R, config = {align = "cm", padding = 0}, nodes = row_cell_nodes}
         end
 
-        return {n=G.UIT.C, config = {align = "cm"}, nodes=matrix_rows}
+        -- smods throws a fit without this because none of the operator gui stuff checks for nil
+        table.insert(matrix_rows, SMODS.GUI.operator(0))
+
+        return {n=G.UIT.R, config = {align = "cm"}, nodes=matrix_rows}
     end
 }
