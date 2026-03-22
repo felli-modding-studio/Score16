@@ -47,6 +47,10 @@ SMODS.Scoring_Calculation {key = 'score16',
                         scale = 0.2
                     }
                 }}
+
+                if param_key == "sc16_sun" then
+                    row_cell_nodes[c].nodes[1].nodes[3].config.object.config.colours[1] = HEX('ffcc4d')
+                end
             end
 
             matrix_rows[r] = {n=G.UIT.R, config = {align = "cm", padding = 0}, nodes = row_cell_nodes}

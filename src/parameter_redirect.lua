@@ -24,6 +24,7 @@ function Game:start_run(args)
 	game_startrun_hook(self, args)
 	if not args.savetext then
 		Score16.set_parameter_redirects()
+        SMODS.set_scoring_calculation('sc16_score16')
 	end
 end
 
