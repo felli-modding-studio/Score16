@@ -4,8 +4,9 @@ return {
             sc16_param_redirect = {
                 name = "Parameter redirected",
                 text = {
-                    "Instead of giving {C:chips}Chips{}/{C:mult}Mult",
-                    "this Joker gives {V:1}#1#"
+                    "This Joker instead",
+                    "gives {C:attention}half {}of",
+                    "{C:chips}Chips{}/{C:mult}Mult{} as {V:1}#1#",
                 }
             }
         }

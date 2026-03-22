@@ -41,6 +41,9 @@ function SMODS.calculate_individual_effect(effect, scored_card, key, amount, fro
             local new_calc_key = Score16.parameters[new_parameter].calculation_keys[key_operator_type]
 
             key = new_calc_key
+            -- as determinant_4x scales faster than chips x mult,
+            -- halving amounts to bring score16 back down to balatro-like scaling
+            amount = type(amount) == "number" and (amount/2) or amount
         end
     end
     return smods_calcindveffect(effect, scored_card, key, amount, from_edition)

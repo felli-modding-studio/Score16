@@ -47,9 +47,11 @@ SMODS.Scoring_Calculation {key = 'score16',
                         scale = 0.2
                     }
                 }}
+                local node_container = row_cell_nodes[c].nodes[1]
 
                 if param_key == "sc16_sun" then
-                    row_cell_nodes[c].nodes[1].nodes[3].config.object.config.colours[1] = HEX('ffcc4d')
+                    local dynatext = node_container.nodes[3].config.object
+                    dynatext.config.colours[1] = HEX('ffcc4d')
                 end
             end
 
