@@ -1,0 +1,16 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# function generate_card_ui
+# Additional tooltips; patched function can be found in ui_hook.lua
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "for _, v in ipairs(info_queue) do"
+position = "before"
+payload = '''
+if card or _c then Score16.additional_infoqueue_tooltips(_c, card, info_queue) end
+'''
+match_indent = true

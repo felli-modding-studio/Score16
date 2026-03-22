@@ -1,3 +1,18 @@
+Score16.calculation_types = {
+    additive = {'chips', 'h_chips', 'chip_mod', 'mult', 'h_mult', 'mult_mod'},
+    multiplicative = {	'x_chips', 'xchips', 'Xchip_mod', 'x_mult', 'Xmult', 'xmult', 'x_mult_mod', 'Xmult_mod',},
+    exponential = {	'e_mult', 'emult', 'Emult_mod', 'e_chips', 'echips', 'Echip_mod',},
+    declarative = {'eq_chips', 'eq_mult'},
+}
+
+Score16.calculation_key_types = {}
+
+for type,calculation_keys in pairs(Score16.calculation_types) do
+    for _,key in ipairs(calculation_keys) do
+        Score16.calculation_key_types[key] = type
+    end
+end
+
 Score16.operator_types = {
     additive_key = function (sound)
         return function (current, amount)
@@ -50,6 +65,10 @@ local function default_calc_keys(key)
         ['x_' .. key] = Score16.operator_types.multiplicative_key(),
         ['e_' .. key] = Score16.operator_types.exponential_key(),
         ['eq_' .. key] = Score16.operator_types.declarative_key(),
+        additive = key,
+        multiplicative = 'x_' .. key,
+        exponential = 'e_' .. key,
+        declarative = 'eq_' .. key,
     }
 end
 

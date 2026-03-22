@@ -14,12 +14,10 @@ end
 ---@return number
 function Score16.determinant_4x(matx)
     --[[
-
     a b c d
     e f g h
     i j k l
     m n o p
-
     ]]
 
     -- r# = row #
@@ -40,6 +38,7 @@ function Score16.determinant_4x(matx)
     - d*( e*det_D - f*det_B + g*det_A )
 end
 
+-- The calc_effect function that almost all Score16 parameters assume.
 function Score16.param_calc_effect(self, effect, scored_card, key, amount, from_edition)
 	if not amount then return end
 	if effect.card and effect.card ~= scored_card then juice_card(effect.card) end
@@ -63,4 +62,32 @@ function Score16.param_calc_effect(self, effect, scored_card, key, amount, from_
 		})
 		return true
 	end
+end
+
+-- Applies various additional tooltips to the hovered card.
+---@param _c SMODS.Center
+---@param card Card
+---@param info_queue table
+---@return nil
+function Score16.additional_infoqueue_tooltips(_c, card, info_queue)
+    if (
+        card
+        and card.config.center
+        and card.config.center.key
+        and G.GAME
+        and G.GAME.joker_param_redirects
+        and G.GAME.joker_param_redirects[card.config.center.key]
+    ) then
+        local card_key = card.config.center.key
+        local redir_param = G.GAME.joker_param_redirects[card_key]
+
+        table.insert(info_queue, {
+            key = 'sc16_param_redirect',
+            set = 'Other',
+            vars = {
+                localize(redir_param),
+                colours = {Score16.parameters[redir_param].colour}
+            }
+        })
+    end
 end
