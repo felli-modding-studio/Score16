@@ -6,6 +6,7 @@ local files = {
     "src/scoring_parameters.lua",
     "src/scoring_calculation.lua",
     "src/parameter_redirect.lua",
+    "src/shader.lua",
 }
 
 for _,file in ipairs(files) do
