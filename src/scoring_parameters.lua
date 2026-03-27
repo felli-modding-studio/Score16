@@ -169,4 +169,9 @@ for _,param in pairs(Score16.parameters) do
         calculation_keys = Score16.table_keys(param.calculation_keys),
         calc_effect = Score16.param_calc_effect
     }
+
+    table.insert(SMODS.scoring_parameter_keys, param.calculation_keys.additive)
+    table.insert(SMODS.scoring_parameter_keys, param.calculation_keys.multiplicative)
+    table.insert(SMODS.scoring_parameter_keys, param.calculation_keys.exponential)
+    table.insert(SMODS.scoring_parameter_keys, param.calculation_keys.declarative)
 end

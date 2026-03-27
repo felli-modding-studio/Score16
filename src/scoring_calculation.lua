@@ -1,8 +1,16 @@
-local score16_matrix = {
+Score16.parameter_matrix = {
     {"chips",     "mult",       "sc16_clam",      "sc16_wunk",},
     {"sc16_evil", "sc16_score", "sc16_stability", "sc16_lily",},
     {"sc16_none", "sc16_fuck",  "sc16_hyper",     "sc16_gender",},
     {"sc16_r",    "sc16_sun",   "sc16_horse",     "sc16_seven",},
+    
+    -- will not be reached by ipairs
+    simple = {
+        {"chips", "mult",  "clam",      "wunk",},
+        {"evil",  "score", "stability", "lily",},
+        {"none",  "fuck",  "hyper",     "gender",},
+        {"r",     "sun",   "horse",     "seven",},
+    }
 }
 
 local calc_params = Score16.table_keys(Score16.parameters)
@@ -12,7 +20,7 @@ table.insert(calc_params, 'chips')
 SMODS.Scoring_Calculation {key = 'score16',
     parameters = calc_params,
     func = function(self, chips, mult, flames)
-        local params = score16_matrix
+        local params = Score16.parameter_matrix
         local matrix = {}
         for r,row in ipairs(params) do
             matrix[r] = {}
@@ -31,7 +39,7 @@ SMODS.Scoring_Calculation {key = 'score16',
         return Score16.determinant_4x(matrix)
     end,
     replace_ui = function (self) --[[@overload fun(self): table]]
-        local params = score16_matrix
+        local params = Score16.parameter_matrix
 
         local matrix_rows = {}
         for r,row in ipairs(params) do

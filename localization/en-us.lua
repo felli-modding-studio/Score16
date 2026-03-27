@@ -1,5 +1,31 @@
 return {
     descriptions = {
+        Edition = {
+            e_foil = {
+                name = "Foil",
+                text = {
+                    "{C:attention}+#1# {}values in",
+                    "{C:attention}#2# #3# {}of",
+                    "the parameter matrix"
+                }
+            },
+            e_holo = {
+                name = "Holographic",
+                text = {
+                    "{C:attention}X#1# {}values in",
+                    "{C:attention}#2# #3# {}of",
+                    "the parameter matrix"
+                }
+            },
+            e_polychrome = {
+                name = "Polychrome",
+                text = {
+                    "{C:attention}X#1# {}values in the {C:attention}top-left to",
+                    "{C:attention}bottom-right diagonal {}of",
+                    "the parameter matrix"
+                }
+            },
+        },
         Other = {
             sc16_param_redirect = {
                 name = "Parameter redirected",
@@ -26,7 +52,11 @@ return {
             sc16_r = "R",
             sc16_sun = "Sun",
             sc16_horse = "Horse",
-            sc16_seven = "Seven"
+            sc16_seven = "Seven",
+
+            k_row = "row",
+            k_column = "column",
+            k_row_column = "row/column"
         }
     }
 }

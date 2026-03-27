@@ -18,12 +18,26 @@ function Score16.set_parameter_redirects()
     end
 end
 
+-- Create the current run's selected row/column for Foil and Holographic.
+---@return nil
+function Score16.set_edition_targets()
+    G.GAME.edition_targets = {}
+    local editions = {"e_foil", "e_holo"}
+    for _,edition_key in ipairs(editions) do
+        G.GAME.edition_targets[edition_key] = {
+            axis = pseudorandom('sc16_' .. edition_key .. '_axis') < 0.5 and "row" or "column",
+            target = pseudorandom('sc16_' .. edition_key .. '_target', 1, 4)
+        }
+    end
+end
+
 -- Hook to create aforementioned redirects
 local game_startrun_hook = Game.start_run
 function Game:start_run(args)
 	game_startrun_hook(self, args)
 	if not args.savetext then
 		Score16.set_parameter_redirects()
+        Score16.set_edition_targets()
         SMODS.set_scoring_calculation('sc16_score16')
 	end
 end
@@ -31,7 +45,7 @@ end
 -- Hook to perform actual redirection
 local smods_calcindveffect = SMODS.calculate_individual_effect
 function SMODS.calculate_individual_effect(effect, scored_card, key, amount, from_edition)
-    if effect.card or scored_card then
+    if not from_edition and (effect.card or scored_card) then
         local card = effect.card or scored_card
         local card_key = card.config.center.key
 

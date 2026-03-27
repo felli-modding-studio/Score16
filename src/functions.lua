@@ -91,3 +91,43 @@ function Score16.additional_infoqueue_tooltips(_c, card, info_queue)
         })
     end
 end
+
+Score16.get_nth = {
+    -- Gets a row of the input matrix.
+    ---@param matrix any[][]
+    ---@param index integer
+    ---@return any[]
+    row = function (matrix, index)
+        return matrix[index]
+    end,
+
+    -- Gets a column of the input matrix.
+    ---@param matrix any[][]
+    ---@param index integer
+    ---@return any[]
+    column = function (matrix, index)
+    local column = {}
+    for _,row in ipairs(matrix) do
+        table.insert(column, row[index])
+    end
+
+    return column
+end
+}
+
+-- Gets a diagonal of the input matrix.
+---@param matrix any[][]
+---@param direction "\\" | "/" If "\\", diagonal is top-left to bottom-right. If "/", diagonal is bottom-left to top-right.
+function Score16.get_diagonal(matrix, direction)
+    local diagonal = {}
+    if direction == "\\" then
+        for i=1,#matrix do
+            table.insert(diagonal, matrix[i][i])
+        end
+    elseif direction == "/" then
+        for i=1,#matrix do
+            table.insert(diagonal, matrix[#matrix-1][i])
+        end
+    end
+    return diagonal
+end
