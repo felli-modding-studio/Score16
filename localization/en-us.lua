@@ -4,17 +4,17 @@ return {
             e_foil = {
                 name = "Foil",
                 text = {
-                    "{C:attention}+#1# {}values in",
-                    "{C:attention}#2# #3# {}of",
-                    "the parameter matrix"
+                    "{C:attention}+#1# {}values in {C:attention}#2# #3# {}of",
+                    "the parameter matrix",
+                    "{C:inactive}(Target changes every run)"
                 }
             },
             e_holo = {
                 name = "Holographic",
                 text = {
-                    "{C:attention}X#1# {}values in",
-                    "{C:attention}#2# #3# {}of",
-                    "the parameter matrix"
+                    "{C:attention}X#1# {}values in {C:attention}#2# #3# {}of",
+                    "the parameter matrix",
+                    "{C:inactive}(Target changes every run)"
                 }
             },
             e_polychrome = {
@@ -22,7 +22,7 @@ return {
                 text = {
                     "{C:attention}X#1# {}values in the",
                     "{C:attention}main diagonal {}of",
-                    "the parameter matrix"
+                    "the parameter matrix",
                 }
             },
         },
@@ -33,6 +33,7 @@ return {
                     "This Joker instead",
                     "gives {C:attention}half {}of",
                     "{C:chips}Chips{}/{C:mult}Mult{} as {V:1}#1#",
+                    "{C:inactive}(Changes every run)"
                 }
             }
         }

@@ -115,19 +115,14 @@ Score16.get_nth = {
 end
 }
 
--- Gets a diagonal of the input matrix.
+-- Gets the elements of the main diagonal of the input matrix.
 ---@param matrix any[][]
----@param direction "\\" | "/" If "\\", diagonal is top-left to bottom-right. If "/", diagonal is bottom-left to top-right.
-function Score16.get_diagonal(matrix, direction)
+---@return any[]
+function Score16.get_main_diagonal(matrix)
     local diagonal = {}
-    if direction == "\\" then
-        for i=1,#matrix do
-            table.insert(diagonal, matrix[i][i])
-        end
-    elseif direction == "/" then
-        for i=1,#matrix do
-            table.insert(diagonal, matrix[#matrix-1][i])
-        end
+    for i=1, #matrix do
+        if not matrix[i][i] then return diagonal end
+        table.insert(diagonal, matrix[i][i])
     end
     return diagonal
 end

@@ -1,3 +1,12 @@
+local function prepare_ret_table(params, value, prefix)
+    prefix = prefix or ""
+    local ret_table = {}
+    for _,param_key in ipairs(params) do
+        ret_table[prefix .. param_key] = value
+    end
+    return ret_table
+end
+
 SMODS.Edition:take_ownership('e_foil', {
     config = {
         extra = {
@@ -26,12 +35,7 @@ SMODS.Edition:take_ownership('e_foil', {
             local target = edition_def.target
             local params = Score16.get_nth[axis](Score16.parameter_matrix.simple, target)
 
-            local ret_table = {}
-            for _,param_key in ipairs(params) do
-                ret_table[param_key] = card.edition.extra.value
-            end
-
-            return ret_table
+            return prepare_ret_table(params, card.edition.extra.value)
         end
     end
 })
@@ -63,12 +67,7 @@ SMODS.Edition:take_ownership('e_holo', {
             local target = edition_def.target
             local params = Score16.get_nth[axis](Score16.parameter_matrix.simple, target)
 
-            local ret_table = {}
-            for _,param_key in ipairs(params) do
-                ret_table["x_" .. param_key] = card.edition.extra.value
-            end
-
-            return ret_table
+            return prepare_ret_table(params, card.edition.extra.value, "x_")
         end
     end
 })
@@ -84,14 +83,8 @@ SMODS.Edition:take_ownership('e_polychrome', {
     end,
     calculate = function (self, card, context)
         if context.post_joker or (context.main_scoring and context.cardarea == G.play) then
-            local params = Score16.get_diagonal(Score16.parameter_matrix.simple, "\\")
-
-            local ret_table = {}
-            for _,param_key in ipairs(params) do
-                ret_table["x_" .. param_key] = card.edition.extra.value
-            end
-
-            return ret_table
+            local params = Score16.get_main_diagonal(Score16.parameter_matrix.simple)
+            return prepare_ret_table(params, card.edition.extra.value, "x_")
         end
     end
 })
