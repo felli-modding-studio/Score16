@@ -20,8 +20,8 @@ return {
             e_polychrome = {
                 name = "Polychrome",
                 text = {
-                    "{C:attention}X#1# {}values in the {C:attention}top-left to",
-                    "{C:attention}bottom-right diagonal {}of",
+                    "{C:attention}X#1# {}values in the",
+                    "{C:attention}main diagonal {}of",
                     "the parameter matrix"
                 }
             },
