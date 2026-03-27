@@ -99,11 +99,11 @@ Score16.parameters = {
         default_value = 1,
         calculation_keys = default_calc_keys("score")
     },
-    sc16_stability = {
-        key = "stability",
+    sc16_wicked = {
+        key = "wicked",
         colour = HEX('0300a9'),
         default_value = 0,
-        calculation_keys = default_calc_keys("stability")
+        calculation_keys = default_calc_keys("wicked")
     },
     sc16_lily = {
         key = "lily",

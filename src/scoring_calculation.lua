@@ -1,15 +1,15 @@
 Score16.parameter_matrix = {
-    {"chips",     "mult",       "sc16_clam",      "sc16_wunk",},
-    {"sc16_evil", "sc16_score", "sc16_stability", "sc16_lily",},
-    {"sc16_none", "sc16_fuck",  "sc16_hyper",     "sc16_gender",},
-    {"sc16_r",    "sc16_sun",   "sc16_horse",     "sc16_seven",},
+    {"chips",     "mult",       "sc16_clam",   "sc16_wunk",},
+    {"sc16_evil", "sc16_score", "sc16_wicked", "sc16_lily",},
+    {"sc16_none", "sc16_fuck",  "sc16_hyper",  "sc16_gender",},
+    {"sc16_r",    "sc16_sun",   "sc16_horse",  "sc16_seven",},
     
     -- will not be reached by ipairs
     simple = {
-        {"chips", "mult",  "clam",      "wunk",},
-        {"evil",  "score", "stability", "lily",},
-        {"none",  "fuck",  "hyper",     "gender",},
-        {"r",     "sun",   "horse",     "seven",},
+        {"chips", "mult",  "clam",   "wunk",},
+        {"evil",  "score", "wicked", "lily",},
+        {"none",  "fuck",  "hyper",  "gender",},
+        {"r",     "sun",   "horse",  "seven",},
     }
 }
 

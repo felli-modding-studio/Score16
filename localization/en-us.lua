@@ -46,7 +46,7 @@ return {
             sc16_wunk = "Wunk",
             sc16_evil = "EVIL",
             sc16_score = "Score",
-            sc16_stability = "Stability",
+            sc16_wicked = "Wicked",
             sc16_lily = "Lily",
             sc16_none = "None",
             sc16_fuck = "Fuck",
