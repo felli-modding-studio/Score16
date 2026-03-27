@@ -8,6 +8,7 @@ local files = {
     "src/parameter_redirect.lua",
     "src/shader.lua",
     "src/edition_ownership.lua",
+    "src/cheat_sheet.lua",
 }
 
 for _,file in ipairs(files) do

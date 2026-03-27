@@ -161,6 +161,8 @@ Score16.parameters = {
     },
 }
 
+G.C.sc16_params = {}
+
 for _,param in pairs(Score16.parameters) do
     SMODS.Scoring_Parameter {
         key = param.key,
@@ -170,8 +172,21 @@ for _,param in pairs(Score16.parameters) do
         calc_effect = Score16.param_calc_effect
     }
 
+    G.C.sc16_params[param.key] = param.colour
+
     table.insert(SMODS.scoring_parameter_keys, param.calculation_keys.additive)
     table.insert(SMODS.scoring_parameter_keys, param.calculation_keys.multiplicative)
     table.insert(SMODS.scoring_parameter_keys, param.calculation_keys.exponential)
     table.insert(SMODS.scoring_parameter_keys, param.calculation_keys.declarative)
+end
+
+local lc_hook = loc_colour
+function loc_colour(...)
+    if not G.ARGS.LOC_COLOURS then lc_hook(...) end
+
+    for key,colour in pairs(G.C.sc16_params) do
+        G.ARGS.LOC_COLOURS[key] = colour
+    end
+
+    return lc_hook(...)
 end

@@ -126,3 +126,64 @@ function Score16.get_main_diagonal(matrix)
     end
     return diagonal
 end
+
+
+
+Score16.UI = {}
+
+---@class localize_line.Args
+---@field text_colour? [number, number, number, number]
+---@field scale? number
+---@field padding? number
+---@field align? string
+
+-- Automatically formats a line of localization into a UIBox definition table.
+---@param line string
+---@param args? localize_line.Args
+---@return UINode
+function Score16.UI.localize_line(line, args)
+    args = args or {}
+    local text_parsed = loc_parse_string(line)
+    local text_ui
+    if text_parsed then
+        text_ui = SMODS.localize_box(text_parsed, {
+            text_colour = args.text_colour or G.C.UI.TEXT_LIGHT,
+            scale = args.scale or 1.125
+        })
+    end
+    local line_ui = {n=G.UIT.R, config={padding = args.padding or 0.03, align = args.align}, nodes = text_ui}
+    return line_ui
+end
+
+---@class localize_desc.Config
+---@field scale? number Size of text.
+---@field empty_line_space? number Height of empty lines.
+---@field padding? number Size of spacing around text.
+---@field text_colour? [number, number, number, number] Default colour for uncoloured text.
+---@field align? string Alignment of all text.
+
+-- Automatically formats a list of localization strings into a UIBox definition table.
+---@param desc string[]
+---@param config? localize_desc.Config
+---@return UINode
+function Score16.UI.localize_desc(desc, config)
+	config = config or {}
+	config.scale = config.scale or 1.125
+	config.empty_line_space = config.empty_line_space or 0.15
+	config.padding = config.padding or 0.03
+	config.text_colour = config.text_colour or G.C.UI.TEXT_LIGHT
+	config.align = config.align or "cl"
+
+	local row_nodes = {}
+	for _,row_text in ipairs(desc) do
+        local row_ui = Score16.UI.localize_line(row_text, {
+            text_colour = config.text_colour,
+            scale = config.scale,
+            padding = row_text ~= "" and config.padding or config.empty_line_space,
+            align = config.align
+        })
+		table.insert(row_nodes, row_ui)
+	end
+
+    return {n=G.UIT.R, config={align=config.align}, nodes=row_nodes}
+end

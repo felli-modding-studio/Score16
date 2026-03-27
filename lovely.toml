@@ -14,3 +14,23 @@ payload = '''
 if card or _c then Score16.additional_infoqueue_tooltips(_c, card, info_queue) end
 '''
 match_indent = true
+
+# function G.UIDEF.run_info
+# Adds the Cheat Sheet tab to Run Info
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+pattern = '''
+{
+  label = localize('b_blinds'),
+  tab_definition_function = G.UIDEF.current_blinds,
+},
+'''
+position = "before"
+payload = '''
+{
+  label = localize('b_sc16_cheat_sheet'),
+  tab_definition_function = Score16.UI.cheat_sheet,
+},
+'''
+match_indent = true
