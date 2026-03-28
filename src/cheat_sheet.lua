@@ -82,30 +82,25 @@ local format_matrix_definition = function ()
         {n=G.UIT.C, nodes={}},
         {n=G.UIT.C, nodes={}},
         {n=G.UIT.C, nodes={}},
-        {n=G.UIT.C, nodes={}},
-        {n=G.UIT.C, nodes={}},
-        {n=G.UIT.C, nodes={}},
     }
     local function term(variables)
-        return ("%s{}*%s{}*%s{}*%s"):format(unpack(variables))
+        return ("{} %s %s{}*%s{}*%s{}*%s"):format(unpack(variables))
     end
-    local function line(operator, term1, term2, term3)
-        table.insert(matx_def_cols[1].nodes, Score16.UI.localize_line(operator))
-        table.insert(matx_def_cols[2].nodes, Score16.UI.localize_line(term(term1)))
-        table.insert(matx_def_cols[3].nodes, Score16.UI.localize_line(operator))
-        table.insert(matx_def_cols[4].nodes, Score16.UI.localize_line(term(term2)))
-        table.insert(matx_def_cols[5].nodes, Score16.UI.localize_line(operator))
-        table.insert(matx_def_cols[6].nodes, Score16.UI.localize_line(term(term3)))
+    local terms_matrix = {
+        {{'+',a,f,k,p}, {'-',a,g,j,p}, {'+',a,h,j,o}, },
+        {{'-',a,f,l,o}, {'+',a,g,l,n}, {'-',a,h,k,n}, },
+        {{'-',b,e,k,p}, {'+',b,g,i,p}, {'-',b,h,i,o}, },
+        {{'+',b,e,l,o}, {'-',b,g,l,m}, {'+',b,h,k,m}, },
+        {{'+',c,e,j,p}, {'-',c,f,i,p}, {'+',c,h,i,n}, },
+        {{'-',c,e,l,n}, {'+',c,f,l,m}, {'-',c,h,j,m}, },
+        {{'-',d,e,j,o}, {'+',d,f,l,o}, {'-',d,g,i,n}, },
+        {{'+',d,e,k,n}, {'-',d,f,k,m}, {'+',d,g,j,m}, },
+    }
+    for _,row in ipairs(terms_matrix) do
+        table.insert(matx_def_cols[1].nodes, Score16.UI.localize_line(term(row[1])))
+        table.insert(matx_def_cols[2].nodes, Score16.UI.localize_line(term(row[2])))
+        table.insert(matx_def_cols[3].nodes, Score16.UI.localize_line(term(row[3])))
     end
-
-    line("{} + ", {a,f,k,p}, {a,g,l,n}, {a,h,j,o})
-    line("{} - ", {a,h,k,n}, {a,g,j,p}, {a,f,l,o})
-    line("{} - ", {b,e,k,p}, {c,e,l,n}, {d,e,j,o})
-    line("{} + ", {d,e,k,n}, {c,e,j,p}, {b,e,l,o})
-    line("{} + ", {b,g,i,p}, {c,h,i,n}, {d,f,l,o})
-    line("{} - ", {d,g,i,n}, {c,f,i,p}, {b,h,i,o})
-    line("{} - ", {b,g,l,m}, {c,h,j,m}, {d,f,k,m})
-    line("{} + ", {d,g,j,m}, {c,f,l,m}, {b,h,k,m})
 
     matrix_def_cache = {n=G.UIT.R, nodes=matx_def_cols}
     return matrix_def_cache
