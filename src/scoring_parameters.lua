@@ -117,17 +117,17 @@ Score16.parameters = {
         default_value = 0,
         calculation_keys = {}
     },
-    sc16_fuck = {
-        key = "fuck",
-        colour = HEX('ff2b86'),
-        default_value = 0,
-        calculation_keys = default_calc_keys("fuck")
-    },
     sc16_hyper = {
         key = "hyper",
         colour = HEX('1b3d3d'),
-        default_value = 1,
+        default_value = 0,
         calculation_keys = default_calc_keys("hyper")
+    },
+    sc16_fuck = {
+        key = "fuck",
+        colour = HEX('ff2b86'),
+        default_value = 1,
+        calculation_keys = default_calc_keys("fuck")
     },
     sc16_gender = {
         key = "gender",
