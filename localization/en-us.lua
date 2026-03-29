@@ -45,7 +45,7 @@ return {
             sc16_clam = "Clams",
             sc16_wunk = "Wunk",
             sc16_evil = "EVIL",
-            sc16_score = "Score",
+            sc16_paramscore = "Score",
             sc16_wicked = "Wicked",
             sc16_lily = "Lily",
             sc16_none = "None",

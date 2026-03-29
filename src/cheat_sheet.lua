@@ -93,7 +93,7 @@ local format_matrix_definition = function ()
         {{'+',b,e,l,o}, {'-',b,g,l,m}, {'+',b,h,k,m}, },
         {{'+',c,e,j,p}, {'-',c,f,i,p}, {'+',c,h,i,n}, },
         {{'-',c,e,l,n}, {'+',c,f,l,m}, {'-',c,h,j,m}, },
-        {{'-',d,e,j,o}, {'+',d,f,l,o}, {'-',d,g,i,n}, },
+        {{'-',d,e,j,o}, {'+',d,f,i,o}, {'-',d,g,i,n}, },
         {{'+',d,e,k,n}, {'-',d,f,k,m}, {'+',d,g,j,m}, },
     }
     for _,row in ipairs(terms_matrix) do

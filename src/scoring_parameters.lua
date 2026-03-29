@@ -93,11 +93,11 @@ Score16.parameters = {
         default_value = 0,
         calculation_keys = default_calc_keys("evil")
     },
-    sc16_score = {
-        key = "score",
+    sc16_paramscore = {
+        key = "paramscore",
         colour = HEX('8303b2'),
         default_value = 1,
-        calculation_keys = default_calc_keys("score")
+        calculation_keys = default_calc_keys("paramscore")
     },
     sc16_wicked = {
         key = "wicked",
